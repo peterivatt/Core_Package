@@ -1,0 +1,66 @@
+###### PBS Options
+
+#Job name
+#PBS -N China
+
+#Merge output and error
+#PBS -j oe
+
+#Select queue
+#PBS -q run
+
+#Memory required
+#PBS -l mem=25G
+
+#Number of nodes and cores required
+#PBS -l nodes=1:ppn=16
+
+#Specify the all the enviromental variables are exported
+#PBS -V
+
+#set job as not rerunnable
+#PBS -r n
+
+###### Set resource limits
+
+#Set stacksize to unlimited
+ulimit -s unlimited
+
+###### Enviromental variables
+
+#Specifty whether waiting threads should be active
+export OMP_WAIT_POLICY=active
+
+#Disable dynamic adjustment of the number of threads
+export OMP_DYNAMIC=false
+
+#Set if thread can be moved between CPUs
+export OMP_PROC_BIND=true
+
+#Specifies the default number of threads to use in parallel
+export OMP_NUM_THREADS=16
+
+#set fortran to big endian
+export F_UFMTENDIAN=big
+
+#Specifies that buffered I/O should be used at run time
+export FORT_BUFFERED=true
+
+#No idea what this does
+export MPSTZ=1024M
+
+#Sets the number of bytes to allocate each OMP thread
+export KMP_STACKSIZE=100000000
+
+#Select the OMP library execution mode 
+export KMP_LIBRARY=turnaround
+
+#####
+
+#change to the directory that the command was issued from
+cd $PBS_O_WORKDIR
+
+#Executable and log output
+./geos.mp > geos.log
+
+#####
