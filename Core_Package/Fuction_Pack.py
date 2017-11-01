@@ -1,6 +1,6 @@
 import os
 
-def folder2files(folder,startstr):
+def folder2files(folder,startstr="",endstr=""):
 	"""
 	Returns a sorted, filtered list of files contained in a folder
 	
@@ -8,8 +8,10 @@ def folder2files(folder,startstr):
 	----------
 	folder : string 
 		The path to the folder to be opened.
-	startstr : string
+	startstr : string, optional
 		Remove files that do not start with this string.
+	startstr : string, optional
+		Remove files that do not end with this string.
 	
 	Returns
 	-------
@@ -21,8 +23,14 @@ def folder2files(folder,startstr):
 	
 	file_list.sort()
 	
-	for file in file_list:
-		if file.startswith(startstr) != True:
-			file_list.remove(file)
+	if startstr =! "":
+		for file in file_list:
+			if file.startswith(startstr) != True:
+				file_list.remove(file)
+	
+	if endstr =! "":
+		for file in file_list:
+			if file.endswith(endstr) != True:
+				file_list.remove(file)
 	
 	return file_list
