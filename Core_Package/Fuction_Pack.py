@@ -1,17 +1,28 @@
 import os
 
-##########################################################
-### List of files in folder
-##########################################################
-
-# Create list of files in folder, filtered by starts with.
 def folder2files(folder,startstr):
-	# Opens folder and orders
+	"""
+	Returns a sorted, filtered list of files contained in a folder
+	
+	Parameters
+	----------
+	folder : string 
+		The path to the folder to be opened.
+	startstr : string
+		Remove files that do not start with this string.
+	
+	Returns
+	-------
+	file_list : list, strings
+		A list of filenames.
+	"""
+	
 	file_list = os.listdir(folder)
+	
 	file_list.sort()
 	
-	#Removes files that don't start with given string.
 	for file in file_list:
 		if file.startswith(startstr) != True:
 			file_list.remove(file)
+	
 	return file_list
